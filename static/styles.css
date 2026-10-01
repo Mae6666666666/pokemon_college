@@ -12,6 +12,41 @@ img {
     margin: 15px;
 }
 
+.info-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 230px;
+    width: 450px;
+    margin: 0em auto 3em auto;
+    box-shadow: 0px 0px 10px black;
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+}
+
+.form-input {
+    text-align: center;
+    color: black;
+    margin-bottom: 7px;
+    background-color: white;
+    border: solid 1px;
+    border-radius: 3px;
+    
+}
+
+.create-account {
+    text-align: center;
+    color: black;
+    margin: 0em auto 3em auto;
+}
+
+.login-account {
+    text-align: center;
+    color: black;
+    margin: 0em auto 3em auto;
+}
+
 .general-container {
     display: flex;
     align-items: center;
