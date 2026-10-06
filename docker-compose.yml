@@ -1,0 +1,16 @@
+  services:
+    db:
+      image: mariadb:11
+      environment:
+        MARIADB_ROOT_PASSWORD: rootpassword
+        MARIADB_DATABASE: pokemon
+        MARIADB_USER: pokemon_user
+        MARIADB_PASSWORD: pokemon_pass
+      ports:
+        - "3306:3306"
+      volumes:
+        - db_data:/var/lib/mysql                              
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql   
+
+  volumes:
+    db_data:
