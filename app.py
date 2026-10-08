@@ -111,5 +111,5 @@ def signup():
 
 @app.route("/homepage")
 def homepage():
-    return redirect("/homepage")
+    return redirect("/login")
 
