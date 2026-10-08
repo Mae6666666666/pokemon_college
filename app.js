@@ -34,10 +34,10 @@
   //   });
   // });
 
-  async function getData(url){
+async function getData(url){
     const response = await fetch(url)
     return response.json()
-  }
+}
 
 
 function displayPokemon(data){
@@ -48,3 +48,7 @@ function displayPokemon(data){
   }
 }
 
+async function loadData(url){
+  displayPokemon(await fetchData(url))
+
+}
