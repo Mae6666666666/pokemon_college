@@ -34,7 +34,6 @@
   //   });
   // });
 
-<<<<<<< HEAD
   
   // const pokemonList = document.querySelector("#pokemon-list");
 
@@ -123,7 +122,7 @@ generatePokemon.addEventListener("click", async () => { // Runs this function wh
     console.error(error); // Writes error details to the browser's developer console.
   }
 }); // Finishes registering the button click handler.
-=======
+
 async function getData(url){
     const response = await fetch(url)
     return response.json()
@@ -142,4 +141,4 @@ async function loadData(url){
   displayPokemon(await fetchData(url))
 
 }
->>>>>>> bcb8bdac04f2baf5962d6610ab7e16141d32ba29
+
