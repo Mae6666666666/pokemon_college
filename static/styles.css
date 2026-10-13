@@ -1,16 +1,11 @@
 header {
-    background-color: red;
+    border: 1px solid red;
     text-align: center;
-    height: 100px;
+    height: 77px;
     margin-bottom: 15px;
     padding: 1px;
 }
 
-img {
-    height: 50px;
-    width: 50px;
-    margin: 15px;
-}
 
 .info-box{
     display: flex;
