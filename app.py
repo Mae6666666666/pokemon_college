@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, send_from_directory
+from flask import Flask, render_template, redirect, request, send_from_directory, session
 import mysql.connector
 import os
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -6,6 +6,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "dev-only-change-me")
 
 @app.route("/")
 def login_route():
@@ -44,6 +45,7 @@ def login():
         db.close()
 
     if user and check_password_hash(user[0], password):
+        session["username"] = username
         return redirect("/homepage")
 
     return "Invalid username or password", 401
@@ -72,7 +74,7 @@ def signup():
     cursor = db.cursor()
     try:
         #Defineing user/pass
-        username = request.form.get("username", "").strip
+        username = request.form.get("username", "").strip()
         password = request.form.get("password")
         #Now we check the database and see if we can use a query to find our username in the DB, remember our only way to
         #communicate with the database is with the cursor, so we try to select the username we got from the database
@@ -95,7 +97,7 @@ def signup():
         #Now we use cursor.execute to insert our new username and password into our database [ENSURE YOU USE CREATE_HAS FOR THE PASSWORD DO NOT GIVE THE RAW TEXT IN]
 
         cursor.execute(
-            'INSERT INTO users (username, password_hash) VALUES (%s %s)',
+            'INSERT INTO users (username, password_hash) VALUES (%s, %s)',
             (username, generate_password_hash(password))
         )
 
@@ -111,5 +113,7 @@ def signup():
 
 @app.route("/homepage")
 def homepage():
-    return redirect("/login")
+    if "username" not in session:
+        return redirect("/login")
+    return render_template("homepage.html")
 
