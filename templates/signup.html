@@ -11,12 +11,12 @@
         <h1 class="underlining">Pika Observer</h1>
     </header>
     <main>
-        <div class="info-box">
+        <form  action="{{ url_for('signup') }}" method="post" class="info-box">
             <h1>Signup</h1>
             <input name="username" class="form-input" type="text" placeholder="Create a username">
             <input name="password" class="form-input" type="password" placeholder="Create password">
             <button type="submit">Sign Up</button>
-        </div>
+        </form>
 
         <div class="create-account">
             <p>
