@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon lister</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
         <h2>
             Pika observer
-        </h3>
+        </h2>
     </header>
     <button class="generate-btn" id="generate-pokemon">
         generate random pokemon
     </button>
     
-    <div class="info-box">
-        <h2 id="pokemon-name">
-            Welcome to the Pokemon generator
-        </h2>
-        <img id="pokemon-img" src="" alt="picure of pokemon">
-
-
+    <div class="general-container">
+        <div class="info-box">
+            <h2 id="pokemon-name">
+                Welcome to the Pokemon generator
+            </h2>
+            <img id="pokemon-img" src="" alt="picure of pokemon">
+        </div>
+        <div class="info-box">
+            <h2>
+                Stats
+            </h2>
+            <ul id="pokemon-stats">
+                <li>Generate a Pokemon to see its stats</li>
+            </ul>
+        </div>
 
     </div>
     <script src="{{ url_for('static', filename='app.js') }}" defer></script>

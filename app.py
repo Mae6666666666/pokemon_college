@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, send_from_directory, session
+from flask import Flask, render_template, redirect, request, send_from_directory, session, url_for
 import mysql.connector
 import os
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -10,7 +10,7 @@ app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY", "dev-only-change-me")
 
 @app.route("/")
 def login_route():
-    return redirect("/login")
+    return redirect(url_for("login"))
     
 
 @app.route("/login", methods=["GET", "POST"])
@@ -46,7 +46,7 @@ def login():
 
     if user and check_password_hash(user[0], password):
         session["username"] = username
-        return redirect("/homepage")
+        return redirect(url_for("homepage"))
 
     return "Invalid username or password", 401
 
@@ -55,7 +55,7 @@ def signup():
     if request.method == "GET":
         return render_template("signup.html")
 
-    username = request.form.get("username", "").strip
+    username = request.form.get("username", "").strip()
     password = request.form.get("password", "")
 
     if not username or not password:
@@ -108,12 +108,12 @@ def signup():
         db.close()
     
     #Then after they have signed up you can choose to redirect the user to a login page or straight to your homepage
-    return redirect("/login")
+    return redirect(url_for("login"))
 
 
 @app.route("/homepage")
 def homepage():
     if "username" not in session:
-        return redirect("/login")
+        return redirect(url_for("login"))
     return render_template("homepage.html")
 
